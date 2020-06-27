@@ -9,8 +9,12 @@ import java.util.Comparator;
  */
 public class SorterTest {
     public static void main(String[] args) {
-        Sorter sorter = new InsertionSort();
-        Integer[] list = new Integer[]{11, 1, 4, 7, 2, 3, 9, 8, 0, 5};
+        Sorter sorter = new QuickSort();
+        Integer[] list = new Integer[30];
+        // fill array with random numbers
+        for (int i = 0; i < list.length; i++) {
+            list[i] = (int) (Math.random() * 99);
+        }
         System.out.println(Arrays.toString(list));
         // 为什么Comparator.naturalOrder().reversed()会有范型错误
         sorter.sort(list, Comparator.comparing((Integer i) -> i).reversed());
