@@ -17,14 +17,19 @@ public class HeapSort extends Sorter {
     public <T> void sort(T[] list, Comparator<T> comp) {
         // 第一个非叶节点为length/2-1
         //1.构建大顶堆
-        for (int i = list.length/2 - 1; i >= 0 ; i--) {
-            //从第一个非叶子结点从下至上，从右至左调整结构
-            adjustHeap(list, i, list.length, comp);
-        }
+        buildMaxHeap(list, comp);
         //2.调整堆结构+交换堆顶元素与末尾元素
         for (int i = list.length - 1; i > 0; i--) {
             swap(list, 0, i);
             adjustHeap(list, 0, i, comp);
+        }
+    }
+
+    //建立一个小根堆
+    private <T> void buildMaxHeap(T[] list, Comparator<T> comp) {
+        for (int i = list.length/2 - 1; i >= 0 ; i--) {
+            //从第一个非叶子结点从下至上，从右至左调整结构
+            adjustHeap(list, i, list.length, comp);
         }
     }
 

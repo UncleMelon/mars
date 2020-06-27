@@ -9,7 +9,7 @@ import java.util.Comparator;
  */
 public class SorterTest {
     public static void main(String[] args) {
-        Sorter sorter = new QuickSort();
+        Sorter sorter = new HeapSort();
         Integer[] list = new Integer[30];
         // fill array with random numbers
         for (int i = 0; i < list.length; i++) {
