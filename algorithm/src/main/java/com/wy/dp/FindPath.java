@@ -41,8 +41,12 @@ public class FindPath {
         a[4] = new int[]{0, 2, 7, 4, 4, 0};
         a[5] = new int[]{0 ,4, 5, 2, 6, 5};
 
-        //30
-
+        int[] dp = a[5];
+        for (int i = 4; i > 0 ; i--) {
+            for (int j = 1; j <= i; j++) {
+                dp[j] = Math.max(dp[j], dp[j+1]) + a[i][j];
+            }
+        }
+        System.out.println(dp[1]);
     }
-
 }

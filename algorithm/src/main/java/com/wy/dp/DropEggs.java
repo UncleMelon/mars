@@ -6,7 +6,7 @@ import java.util.Arrays;
  * @author matthew_wu
  * @since 2020-06-30 18:08
  */
-public class ThrowEgg {
+public class DropEggs {
 
     public static void main(String[] args) {
         System.out.println(solution100(100));
