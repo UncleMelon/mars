@@ -14,22 +14,17 @@ import java.util.stream.Collectors;
 public class CustomCollectDemo {
 
     public static void main(String[] args) {
-        List<TemplateScore> templates = new ArrayList<>();
-        templates.add(new TemplateScore("id3", 0.1, 2, 11));
-        templates.add(new TemplateScore("id1", 0.2, 1, 1));
-        templates.add(new TemplateScore("id2", 0.1, 2, 1));
-        templates.add(new TemplateScore("id1", 0.3, 2, 11));
 
-        Map<String, ImmutablePair<Double, String>> collect = templates.stream().collect(Collectors.groupingBy(TemplateScore::getId,
+
+        Map<String, ImmutablePair<Double, String>> collect = UserScoreData.getData().stream().collect(Collectors.groupingBy(UserScore::getId,
                 Collectors.collectingAndThen(Collectors.toList(), list -> {
-                    double total = list.stream().collect(Collectors.summingDouble(TemplateScore::getScore));
-                    String s = getTotol(list);
+                    double total = list.stream().collect(Collectors.summingDouble(UserScore::getScore));
+                    String s = getTotal(list);
                     return ImmutablePair.of(total, s);
                 })
         ));
 
         collect.entrySet().stream().forEach(v -> System.out.println(v.getValue()));
-
 
         collect.entrySet().stream().sorted((k1, k2) -> {
             int leftComp = k2.getValue().getLeft().compareTo(k1.getValue().getLeft());
@@ -41,13 +36,14 @@ public class CustomCollectDemo {
 
     }
 
-    public static String getTotol(List<TemplateScore> list) {
+    public static String getTotal(List<UserScore> list) {
         StringBuilder builder = new StringBuilder();
-        Map<Integer, String> map = list.stream().collect(Collectors.toMap(TemplateScore::getInnerGroup,
+        Map<Integer, String> map = list.stream().collect(Collectors.toMap(UserScore::getInnerGroup,
                 e -> String.format("%03d", e.getInnerScore())));
         for (int i = 1; i < 5 ; i++) {
             builder.append(map.getOrDefault(i, "000"));
         }
         return builder.toString();
     }
+
 }

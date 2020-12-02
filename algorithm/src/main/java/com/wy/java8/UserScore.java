@@ -4,7 +4,7 @@ package com.wy.java8;
  * @author matthew_wu
  * @since 2020-06-08 16:18
  */
-public class TemplateScore {
+public class UserScore {
 
     private String id;
 
@@ -14,7 +14,7 @@ public class TemplateScore {
 
     private int innerScore;
 
-    public TemplateScore(String id, Double score, int innerGroup, int innerScore) {
+    public UserScore(String id, Double score, int innerGroup, int innerScore) {
         this.id = id;
         this.score = score;
         this.innerGroup = innerGroup;
